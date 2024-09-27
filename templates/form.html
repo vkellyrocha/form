@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ form.title}}
+{% endblock%}
+
+{% block content %}
+<h1>{{ form.title }}</h1>
+<p>{{ form.description}}</p>
+<form method="POST" action="{{ url_for('submit_response', form_id=form.id)}}">
+    {% for question in form.questions %}
+        <div>
+            <label>{{ question.question_text }}</label>
+            {% if question.question_type == 'short' %}
+                <input type="text" name="question_{{ question.id }}" maxlength="200" required>
+            {% elif question.question_type == 'long' %}
+                <textarea name="question_{{ question.id}}" required></textarea>  
+            {% eliif question.question_type == 'moltiple_choice' %}
+                {% for option in quetion.options.split(',')%}
+                    <input type="radio" name="question_{{ question.id}}" values="{{ option}}" required>{{ option }}<br>
+                {% endfor %}           
+            {% elif question.question_type == 'checkbox' %}
+                {% for option in question.options.split(',') %}
+                    <input type="checkbox" name="question_{{ question.id }}[]" value="{{ option }}">{{ option }}<br>          
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit">Enviar</button>
+</form>
+
+
+{% endblock %}

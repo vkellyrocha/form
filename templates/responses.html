@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ form.title}}
+{% endblock%}
+
+{% block content %}
+<h1>Respostas do formulário: {{ form.title}}</h1>
+{% for question in form.questions %}
+    <h2>{{ question_f.question_text}}</h2>
+    <ul>
+        {% for response in responses[question_response.id] %}
+            <li>{{ response.answer }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+{% endblock %}

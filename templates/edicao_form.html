@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+Editar formulário:
+{% endblock%}
+
+{% block content %}
+<h1>Editar Formulário: {{ form.title}}</h1>
+<form method="POST" action="{{ url_for('edit_form', form_id=form.id) }}">
+    <input type="text" name="title" value="{{ form.title}}" maxlength="200" required>
+    <textarea name="description">{{ form.description }}</textarea>
+    <button type="submit">Salvar alterações</button>
+</form>
+<!--perguntas ja cadastradas-->
+<h2>Perguntas</h2>
+<ul>
+    {% for question in form.questions %}
+        <li>{{ question.question_text }} - ({{question.question_type}})</li>
+    {% endfor%}
+</ul>
+<h2>Adicionar pergunta</h2>
+<form method="POST" action="{{ url_for('add_question', form_id=form.id)}}">
+    
+    <input type="text" id="question_text" placeholder="Texto da pergunta">
+    <select id="question_type">
+        <option value="short">Resposta Curta</option>
+        <option value="long">Resposta longa</option>
+        <option value="multiple_choice">Resposta de Múltipla Escolha</option>
+        <option value="checkbox">Caixa de seleção</option>
+    </select>
+    <textarea id="options" placeholder="Escreva as opções caso seja o caso(separadas por vígula)"></textarea>
+    <button type="submit">Adicionar pergunta</button>
+</form>
+
+{% endblock %}

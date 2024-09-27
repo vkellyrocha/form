@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ 
+    <script src="../static/js/scripts.js" defer></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('index')}}">Home</a></li>
+                {% if session['username']%}
+                    <li> <a href="{{url_for('logout')}}" id="logout">Logout</a></li>
+                {% else %}
+                    <li> <a href="{{url_for('cadastro')}}">Cadastrar</a></li>
+                    <li> <a href="{{url_for('login')}}" id="entrar">Entrar</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    </header>
+
+    {% if success or error %}
+        <div class="msg">
+        {% if success %}
+            <div class="success">
+                {{ success }}
+            </div>
+        {% elif error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+        </div>
+{% endif %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    cadastro
+{% endblock %}
+
+{% block content %}
+
+<form action="{{url_for('cadastro')}}" method="POST" id="form_cadastro">
+    {% for field in fields %}
+        <div class="data-container">
+            <label for="{{field}}">{{field.capitalize()}}</label>
+            {% if field == 'email'%}
+                <input type="email" name="{{field}}" id="{{field}}">
+            {% elif field == 'password'%}
+                <input type="password" name="{{field}}" id="{{field}}">
+            {% else %}
+                <input type="text" name="{{field}}" id="{{field}}">
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <input type="submit" value="Cadastrar">
+</form>
+
+{% endblock %}

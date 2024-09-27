@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+    background-color: bisque;
+}
+
+form{
+    justify-content: center;
+    align-items: center;
+}
+
+button[type='submit']{
+    background-color: rgb(100, 222, 182);
+    border-radius: 10px;
+}

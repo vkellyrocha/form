@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+Formulários
+{% endblock%}
+
+{% block content %}
+
+<h1>Formulários</h1>
+<a href="{{ url_for('create_form') }}">Criar Novo Formulário</a>
+
+<ul id="form-list">
+    
+</ul>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static'), filename='..\static\js\script_forms.js'}}"></script>
+{% endblock %}
